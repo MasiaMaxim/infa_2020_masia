@@ -1,0 +1,33 @@
+import pygame
+from pygame.draw import *
+
+pygame.init()
+
+FPS = 30
+screen = pygame.display.set_mode((800, 800))
+
+yellow = (255, 255, 0)
+black = (0, 0, 0)
+red = (255, 0, 0)
+circle(screen, yellow, (400, 400), 100)
+circle(screen, red, (350, 360), 25)
+circle(screen, red, (450, 360), 20)
+circle(screen, black, (350, 360), 10)
+circle(screen, black, (450, 360), 10)
+line(screen, black, (350, 450), (450, 450), 25)
+
+
+
+
+
+pygame.display.update()
+clock = pygame.time.Clock()
+finished = False
+
+while not finished:
+    clock.tick(FPS)
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            finished = True
+
+pygame.quit()
