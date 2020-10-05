@@ -11,6 +11,25 @@ def cat (x, y, size):
     cat_whith_mouse_image = pygame.transform.scale(image1, (size, size))
     screen.blit(cat_whith_mouse_image, (x*width0, y*heigth0))
 
+def sun(x, y, size):
+    s = pygame.Surface((500,400))
+    s.fill(black)
+    s.set_alpha(50)
+    s.set_colorkey(black)
+    ellipse(screen, (255, 242, 0), pygame.Rect(x*width0, y*heigth0, size, size))
+    screen.blit(s, (x, y))
+
+
+def snow(x,y,size):
+    q = size/500
+    s = pygame.Surface((size,4*size/10))
+    s.fill(black)
+    s.set_alpha(128)
+    s.set_colorkey(black)
+    for i in range(50, 500, 20):
+        polygon(s, (108,93,83), [(0+i*q,(4*size/10)-i*q),(size - i*q,(4*size/10)-i*q),(size - i*q,(4*size/10)-i*q-10*q),(0+i*q,(4*size/10)-i*q-10*q)])
+    screen.blit(s, (x*width0, y*heigth0))
+
 
 def jjjj (x, y, size):
     q = size/100
@@ -25,11 +44,14 @@ def jjjj (x, y, size):
         line(screen, black, (x + i*q,y - size + i*q), (x + i*q,y))
 
 
-def chch (x, y, size):
+def chch (x, y, size, rev=0):
     q = size/300 #очень красивый костыль(преисполнился после его использования)
     ellipse(screen, (145, 124, 111), pygame.Rect(x*width0-30*q, y*heigth0+35*q, size/4, size/8))
     ellipse(screen, (145, 124, 111), pygame.Rect(x*width0+100*q, y*heigth0+35*q, size/4, size/8))
-    line(screen, black, (x*width0-10*q,y*heigth0), (x*width0-10*q,y*heigth0+140*q))
+    if rev == 1:
+        line(screen, black, (x*width0+160*q,y*heigth0), (x*width0+160*q,y*heigth0+140*q))
+    else:
+        line(screen, black, (x*width0-10*q,y*heigth0), (x*width0-10*q,y*heigth0+140*q))        
     ellipse(screen, (227, 222, 219), pygame.Rect(x*width0+(0*size), y*heigth0-0.1*size, 2*size/4, 2*size/8))
     ellipse(screen, (145, 124, 111), pygame.Rect(x*width0, y*heigth0, size/2, size))
     polygon(screen, white, [(x*width0,y*heigth0+size/2), (x*width0+size/2,y*heigth0+size/2), (x*width0+size/2,y*heigth0+size), (x*width0,y*heigth0+size)])
@@ -71,13 +93,13 @@ jjjj(250, 600, 100)
 
 
 chch(0.45, 0.5, 100)
-chch(0.55, 0.4, 100)
+chch(0.55, 0.4, 100,1)
 chch(0.55, 0.5, 100)
-chch(0.9, 0.35, 100)
-chch(0.7, 0.4, 150)
-chch(0.9, 0.5, 150)
+chch(0.9, 0.35, 100,1)
+chch(0.7, 0.4, 150,1)
+chch(0.9, 0.5, 150,1)
 chch(0.4, 0.6, 150)
-chch(0.7, 0.6, 300) #300 - фундаментальный размер чукчи
+chch(0.7, 0.6, 300,1) #300 - фундаментальный размер чукчи
 
 cat(0.2, 0.61, 100)
 cat(0.001, 0.7, 100)
@@ -85,7 +107,10 @@ cat(0.2, 0.9, 200)
 cat(0.91, 0.85, 100)
 cat(0.3, 0.73, 150)
 cat(0.6, 0.9, 150)
-
+snow(0.5,0.5,300)
+snow(0.8,0.8,200)
+snow(0.3,0.9,400)
+sun(0,0,100)
 
 
 

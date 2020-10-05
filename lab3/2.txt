@@ -7,6 +7,26 @@ FPS = 30
 image1 = pygame.image.load("cat_whith_mouse.png")
 image2 = pygame.image.load("cat.png")
 
+
+def snow(x,y,size):
+    q = size/500
+    s = pygame.Surface((size,4*size/10))
+    s.fill(black)
+    s.set_alpha(128)
+    s.set_colorkey(black)
+    for i in range(50, 500, 20):
+        polygon(s, (108,93,83), [(0+i*q,(4*size/10)-i*q),(size - i*q,(4*size/10)-i*q),(size - i*q,(4*size/10)-i*q-10*q),(0+i*q,(4*size/10)-i*q-10*q)])
+    screen.blit(s, (x*width0, y*heigth0))
+
+
+def sun(x, y, size):
+    s = pygame.Surface((500,400))
+    s.fill(black)
+    s.set_alpha(50)
+    s.set_colorkey(black)
+    ellipse(screen, (255, 242, 0), pygame.Rect(x*width0, y*heigth0, size, size))
+    screen.blit(s, (x, y))
+
 def cat (x, y, size):
     cat_whith_mouse_image = pygame.transform.scale(image1, (size, size))
     screen.blit(cat_whith_mouse_image, (x*width0, y*heigth0))
@@ -25,11 +45,14 @@ def jjjj (x, y, size):
         line(screen, black, (x + i*q,y - size + i*q), (x + i*q,y))
 
 
-def chch (x, y, size):
+def chch (x, y, size, rev=0):
     q = size/300 #очень красивый костыль(преисполнился после его использования)
     ellipse(screen, (145, 124, 111), pygame.Rect(x*width0-30*q, y*heigth0+35*q, size/4, size/8))
     ellipse(screen, (145, 124, 111), pygame.Rect(x*width0+100*q, y*heigth0+35*q, size/4, size/8))
-    line(screen, black, (x*width0-10*q,y*heigth0), (x*width0-10*q,y*heigth0+140*q))
+    if rev == 1:
+        line(screen, black, (x*width0+160*q,y*heigth0), (x*width0+160*q,y*heigth0+140*q))
+    else:
+        line(screen, black, (x*width0-10*q,y*heigth0), (x*width0-10*q,y*heigth0+140*q))        
     ellipse(screen, (227, 222, 219), pygame.Rect(x*width0+(0*size), y*heigth0-0.1*size, 2*size/4, 2*size/8))
     ellipse(screen, (145, 124, 111), pygame.Rect(x*width0, y*heigth0, size/2, size))
     polygon(screen, white, [(x*width0,y*heigth0+size/2), (x*width0+size/2,y*heigth0+size/2), (x*width0+size/2,y*heigth0+size), (x*width0,y*heigth0+size)])
@@ -50,13 +73,11 @@ def chch (x, y, size):
 width0 = 800
 heigth0 = 1000
 
-
 yellow = (255, 255, 0)
 black = (0, 0, 0)
 red = (255, 0, 0)
 white = (255, 255, 255)
 catcolor = (204, 204, 204)
-
 
 screen = pygame.display.set_mode((width0, heigth0))
 screen.fill(white)
@@ -64,9 +85,20 @@ polygon(screen, (230,230,230), [(0,0), (0,0.4*heigth0), (width0,0.4*heigth0), (w
 
 
 
+
+
+
+
+
+
+
+
 jjjj(200, 450, 150) #100 - фундаментальный размер юрты
-chch(0.6, 0.5, 300) #300 - фундаментальный размер чукчи
+chch(0.6, 0.5, 300, 1) #300 - фундаментальный размер чукчи
 cat(0.1, 0.7, 200)
+sun(0,0,100)
+snow(0.1,0.3,250)
+
 
 
 
